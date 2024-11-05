@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset CSS */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+        
+        /* General styling */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            font-family: Arial, sans-serif;
+        }
+        
+        table {
+            border-collapse: collapse !important;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .header {
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        /* Background image with opacity */
+        .header::before {
+            content: "";
+            background-image: url('https://cdn.discordapp.com/attachments/1211253303204380723/1303409840915484672/background2.jpg?ex=672ba682&is=672a5502&hm=717afdd33f58b3c90663a55dbc95e1ead2a7e40cbe547c159b384ffc66f292c3');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5; /* Adjust opacity here */
+            z-index: 1;
+        }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            position: relative;
+            z-index: 2;
+            color: black;
+        }
+
+        .body {
+            background-color: #ffffff;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .verify-button {
+            background-color: #4caf50;
+            color: white !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+        }
+        
+        /* Responsive styling */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+            .header, .body, .footer {
+                padding: 10px !important;
+            }
+            .body {
+                font-size: 14px !important;
+            }
+            .verify-button {
+                font-size: 14px !important;
+                padding: 10px 15px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table role="presentation" class="email-container">
+        <tr>
+            <td class="header"></td>
+        </tr>
+        
+        <tr>
+            <td class="body email-content">
+                <p>Hi {{ fullName }},</p>
+                <p>Thank you for registering to use our service. This is the email to verify your account</p>
+                <p>Please click the button below to verify your account.</p>
+                
+                <div class="button-container">
+                    <a href={{ url }} class="verify-button">Verify account</a>
+                </div>
+
+                <p>Please note that this confirmation link is valid for 30 minutes only. If you don't confirm your email within this time frame, you may need to request a new confirmation link.</p>
+                <p>Support team</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="footer">
+                <p>You received this email because you signed up to use our service.</p>
+                <p>&copy; 2024 Bookhub</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

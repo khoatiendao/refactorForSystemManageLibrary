@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const adminSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+const adminSchema = mongoose.Schema({    
     email: {
         type: String,
         required: true
@@ -10,8 +9,9 @@ const adminSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    full_name: {
+    role: {
         type: String,
+        default: 'admin',
         required: true
     }
 })

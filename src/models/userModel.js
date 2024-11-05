@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const UserSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+const UserSchema = mongoose.Schema({    
     email: {
         type: String,
         required: true
@@ -10,8 +9,13 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    interest: {
+    fullName: {
         type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        default: 'user',
         required: true
     },
     phone: {
@@ -32,6 +36,11 @@ const UserSchema = mongoose.Schema({
     },
     city: {
         type: String,
+        required: true
+    },
+    verify: {
+        type: Boolean,
+        default: false,
         required: true
     }
 })
