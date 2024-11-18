@@ -1,5 +1,5 @@
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
-const handleError = (err, req, res, next) => {
+export const handleError = (err, req, res, next) => {
   let error = { ...err };
 
   if (err?.name === 'CastError') {

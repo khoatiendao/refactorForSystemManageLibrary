@@ -1,10 +1,14 @@
 import mailer from 'nodemailer';
 import hbs from 'handlebars';
 import fs from 'fs';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import jwtToken from '../middlewares/auth/authJwt.js';
 import dotenv from 'dotenv';
 dotenv.config()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const transporter = mailer.createTransport({
   host: 'smtp.gmail.com', // SMTP server của gmail
@@ -36,7 +40,7 @@ const createMail = {
       return new Promise((resolve, reject) => {
         try {
           readFileHtml(
-            path.join(__dirname, '../assets/hbs/mailRegister.hbs'),
+            join(__dirname, '../assets/hbs/mailRegister.hbs'),
             (err, html) => {
               if (err) {
                 reject('Error loading templates');
@@ -49,18 +53,7 @@ const createMail = {
                   from: process.env.EMAIL_USER,
                   to: email,
                   subject: 'Verify Account',
-                  html: htmlToSend,
-                //   attachments: [
-                //     {
-                //       filename: 'logo.png',
-                //       path: path.join(
-                //         __dirname,
-                //         '../../resource/assets/img/logo.png'
-                //       ),
-                //       contentDisposition: 'inline', // hình ảnh sẽ hiển thị ở bên trong mail chứ không là tệp đính kèm
-                //       cid: 'logo@png.cid', // Content-ID cho ảnh
-                //     },
-                //   ],
+                  html: htmlToSend,          
                 };
   
                 transporter.sendMail(mailOptions, (err, info) => {
