@@ -6,6 +6,11 @@ const authorService = {
         return result;
     },
 
+    async findOneAuthor(_id) {
+        const result = await Author.findOne(_id).exec();
+        return result;
+    },
+
     async create(author) {
         const result = await Author.create(author);
         return result;

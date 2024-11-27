@@ -1,11 +1,14 @@
-import express from "express";
-import jwtToken from "../middlewares/auth/authJwt.js";
-import { authorizeRole } from "../middlewares/auth/authRole.js";
-import handleAsync from "../middlewares/handle/handleAsync.js";
-import { findAll } from "../controllers/authorController.js";
+// import express from 'express';
+import { Router } from "express";
+import jwtToken from '../middlewares/auth/authJwt.js';
+import { authorizeRole } from '../middlewares/auth/authRole.js';
+import handleAsync from '../middlewares/handle/handleAsync.js';
+import Author from '../controllers/authorController.js';
 
-const routes = express.Router()
+const routes = Router();
 
-routes.get("/", jwtToken.checkTokenVerify, authorizeRole('user'), handleAsync(findAll))
+routes.post('/api/v1/author/create', Author.createAuthor);
+
+routes.get('/getAuthor', Author.getAllAuthor)
 
 export default routes;

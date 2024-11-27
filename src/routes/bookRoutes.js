@@ -1,13 +1,17 @@
-import express from "express";
+// import express from "express";
+import { Router } from "express";
 import jwtToken from "../middlewares/auth/authJwt.js";
 import { authorizeRole } from "../middlewares/auth/authRole.js";
 import handleAsync from "../middlewares/handle/handleAsync.js";
-import { bookDetail, searchTitle } from "../controllers/bookController.js";
+import Book from "../controllers/bookController.js"
 
-const routes = express.Router()
+const routes = Router()
 
-routes.get('/search', searchTitle)
+routes.post('/create', Book.createBook)
 
-routes.get('/:_id', bookDetail)
+routes.get('/search', Book.searchTitle)
+
+routes.get('/:_id', Book.getBookDetail)
+
 
 export default routes;

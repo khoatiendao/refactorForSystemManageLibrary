@@ -6,6 +6,11 @@ const genreService = {
         return result;
     },
 
+    async findOneGenre(_id) {
+        const result = await Genre.findOne(_id).exec();
+        return result;
+    },
+
     async create(genre) {
         const result = await Genre.create(genre);
         return result;

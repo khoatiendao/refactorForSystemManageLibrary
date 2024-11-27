@@ -7,6 +7,11 @@ const publisherService = {
         return result;
     },
 
+    async findOnePublisher(_id) {
+        const result = await Publisher.findOne(_id).exec();
+        return result;
+    },
+
     async create(publisher) {
         const result = await Publisher.create(publisher);
         return result;

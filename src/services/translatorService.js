@@ -6,6 +6,11 @@ const translatorService = {
         return result;
     },
 
+    async findOneTranslator(_id) {
+        const result = await Translator.findOne(_id).exec();
+        return result;
+    },
+
     async create(translator) {
         const result = await Translator.create(translator);
         return result;

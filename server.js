@@ -3,21 +3,16 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import connMongoose from './src/configs/database.js';
-import userRoutes from './src/routes/userRoutes.js';
-import bookRoutes from './src/routes/bookRoutes.js'
-import authorRoutes from './src/routes/authorRoutes.js'
 import handleError from './src/middlewares/handle/handleError.js';
-import Book from './src/models/bookModel.js';
-import genre from './src/models/genreModel.js';
-import author from './src/models/authorModel.js';
-import Translator from './src/models/translatorModel.js';
-import publisher from './src/models/publisherModel.js';
+import authorRoutes from './src/routes/authorRoutes.js'
+import bookRoutes from './src/routes/bookRoutes.js';
+import userRoutes from './src/routes/userRoutes.js';
 dotenv.config();
 connMongoose();
 const app = express();
 const PORT = process.env.PORT || 9000;
 
-app.use('trust proxy', true)
+// app.use('trust proxy', true)
 morgan.token('ip', (req) => (req.ip))
 app.use(morgan(':ip - :method :url :status :response-time ms')); // log ra server mỗi lần request
 app.use(bodyParser.json());
@@ -43,11 +38,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Handle Error
+app.use(handleError);
+
+
 // API routes
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/book', bookRoutes)
 app.use('/api/v1/author', authorRoutes)
 
-// Handle Error
-app.use(handleError);
 
