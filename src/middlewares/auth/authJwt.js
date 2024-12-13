@@ -5,11 +5,12 @@ dotenv.config();
 const jwtKey = process.env.SECRET_JWT_KEY;
 
 const jwtToken = {
-  generatedToken(_id, role) {
+  generatedToken(_id, role, fullName) {
     const createToken = jwt.sign(
       {
         _id: _id,
         role: role,
+        fullName: fullName
       },
       process.env.SECRET_JWT_KEY,
       { algorithm: 'HS256', expiresIn: process.env.JWT_KEY_EXPIRES_IN }

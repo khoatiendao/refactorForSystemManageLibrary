@@ -87,12 +87,13 @@ class User {
       } else {
         const _id = findUser._id;
         const role = findUser.role;
+        const fullName = findUser.fullName
         const matchPassword = await bcrypt.compare(password, findUser.password);
         if (matchPassword) {
-          const token = jwtToken.generatedToken(_id, role);
+          const token = jwtToken.generatedToken(_id, role, fullName);
           res
             .status(200)
-            .json({ success: true, message: 'Login Successfull', token: token });
+            .json({ token });
         } else {
           throw new errorResponse(400, 'Wrong Password');
         }
