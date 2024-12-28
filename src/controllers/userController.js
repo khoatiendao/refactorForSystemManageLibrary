@@ -103,6 +103,45 @@ class User {
     }
   };
 
+  async findAllUser(req, res, next) {
+    try {
+      const result = await userService.getAll();
+      if(!result) {
+        throw new errorResponse(400, 'Can not get all user');
+      } else {
+        res.status(200).json({result})
+      }
+    } catch (error) {
+      throw new errorResponse(500, 'INTERNAL SERVER ERROR');
+      next(error);
+    }
+  }
+
+  async findOneUser(req, res, next) {
+    try {
+      const _id = req.param._id;
+      const result = await userService.getOne(_id);
+      if(!result) {
+        throw new errorResponse(400, 'Can not get user id');
+      } else {
+        res.status(200).json({result});
+      }
+    } catch (error) {
+      throw new errorResponse(500, 'INTERNAL SERVER ERROR');
+      next(error);
+    }
+  }
+
+  // async verifyUser(req, res, next) {
+  //   try {
+  //     const token = req.param.token
+  //   } catch (error) {
+      
+  //   }
+  // }
+
+
+
 }
 
 

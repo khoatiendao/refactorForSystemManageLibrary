@@ -11,4 +11,8 @@ routes.post('/register', User.userRegister);
 
 routes.post('/login', User.userLogin);
 
+routes.get('/', jwtToken.checkTokenVerify, authorizeRole('admin'), handleAsync(User.findAllUser))
+
+routes.get('/:_id', jwtToken.checkTokenVerify, authorizeRole('admin'), handleAsync(User.findOneUser))
+
 export default routes;

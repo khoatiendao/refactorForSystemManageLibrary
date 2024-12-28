@@ -30,7 +30,17 @@ const userService = {
         }
         const result = User.updateOne(_id, userInfo, {new: true})
         return result;
-    }
+    },
+
+    async getAll() {
+        const result = await User.find([]);
+        return result;
+    },
+
+    async getOne(_id) {
+        const result = await User.findById(_id).exec();
+        return result;
+    },    
 }
 
 export default userService;
